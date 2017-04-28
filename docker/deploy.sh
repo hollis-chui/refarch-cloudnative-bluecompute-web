@@ -7,8 +7,8 @@ function get_object_storage_secret {
 set -x
 
 build_number=$1
-image_name="registry.ng.bluemix.net/chrisking/bluecompute-web:${build_number}"
-#image_name="registry.ng.bluemix.net/chrisking/bluecompute-web:17"
+image_name="registry.ng.bluemix.net/hollis_test/bluecompute-web:${build_number}"
+#image_name="registry.ng.bluemix.net/hollis_test/bluecompute-web:17"
 token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 cluster_name=$(cat /var/run/secrets/bx-auth-secret/CLUSTER_NAME)
 ing_host=$(bx cs cluster-get ${cluster_name}|grep 'Ingress host:'|awk '{print $NF}')
@@ -27,7 +27,7 @@ if [[ -z "${bc_web_service// }" ]]; then
 
 	# Enter secret and image name into yaml
 	sed -i.bak s%binding-object-storage%${object_storage_secret}%g web.yaml
-	sed -i.bak s%registry.ng.bluemix.net/chrisking/bluecompute-web:v1%${image_name}%g web.yaml
+	sed -i.bak s%registry.ng.bluemix.net/hollis_test/bluecompute-web:v1%${image_name}%g web.yaml
 
 	# Do the deployment
 	kubectl --token=${token} create -f web.yaml
@@ -55,7 +55,7 @@ echo "Access the web app at http://$IP_ADDR:$PORT"
  	if [[ "${IP_ADDR// }" ]]; then
  		echo "delete images from previous build"
 		previous_build=$((build_number-1))
-  	bx cr image-rm registry.ng.bluemix.net/chrisking/bluecompute-web:${previous_build}
+  	bx cr image-rm registry.ng.bluemix.net/hollis_test/bluecompute-web:${previous_build}
  	fi
 
 cd ../docker

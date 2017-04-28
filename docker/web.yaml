@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: bluecompute-web
-        image: registry.ng.bluemix.net/chrisking/bluecompute-web:v1
+        image: registry.ng.bluemix.net/hollis_test/bluecompute-web:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
