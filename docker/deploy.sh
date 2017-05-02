@@ -31,7 +31,7 @@ if [[ -z "${bc_web_service// }" ]]; then
 
 	# Do the deployment
 	kubectl --token=${token} create -f web.yaml
- # sed -i "s/{{ing_host}}/$ing_host/g" ing.yaml
+  sed -i "s/{{ing_host}}/$ing_host/g" ing.yaml
   kubectl create -f ing.yaml
 
 else
