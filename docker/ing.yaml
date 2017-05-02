@@ -4,8 +4,9 @@ metadata:
   name: bluecompute-web
 spec:
   rules:
-  - http:
-      paths:
+  - host: {{ing_host}}
+    http:
+    paths:
       - path: /oauth/token
         backend:
           serviceName: auth-service
