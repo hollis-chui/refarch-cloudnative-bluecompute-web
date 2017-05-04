@@ -4,7 +4,7 @@ metadata:
   name: bluecompute-web
 spec:
   rules:
-  - host: 
+  - host: mike-lab3.us-south.containers.mybluemix.net 
     http:
       paths:
       - path: /oauth/token
